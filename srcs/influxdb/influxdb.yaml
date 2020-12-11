@@ -1,0 +1,62 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    influxdb.yaml                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/04 11:13:14 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/09 14:25:57 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: influxdb
+spec:
+  selector:
+    matchLabels:
+      app: influxdb
+  serviceName: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb-image
+        imagePullPolicy: Never
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 8086
+          initialDelaySeconds: 30
+          timeoutSeconds: 30
+        env:
+          - name: IDB_ADMIN_PASS
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: influxdb_admin_pass
+          - name: IDB_TELEGRAF_PASS
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: influxdb_telegraf_user_pass
+          - name: IDB_GRAFANA_PASS
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: influxdb_grafana_user_pass
+        volumeMounts:
+          - name: influxdb-pv
+            mountPath: /var/lib/influxdb
+        ports:
+        - containerPort: 8086
+        - containerPort: 8083
+      volumes:
+        - name: influxdb-pv
+          persistentVolumeClaim:
+            claimName: influxdb-pvc

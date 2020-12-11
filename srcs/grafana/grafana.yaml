@@ -1,0 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    grafana.yaml                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/05 14:51:03 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/09 14:33:29 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: grafana
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  serviceName: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana-image
+        volumeMounts:
+          - name: grafana-pv
+            mountPath: /root/grafana/data
+        imagePullPolicy: Never
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        env:
+          - name: IDB_GRAFANA_PASS
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: influxdb_grafana_user_pass
+        ports:
+        - containerPort: 3000
+      volumes:
+      - name: grafana-pv
+        persistentVolumeClaim:
+            claimName: grafana-pvc

@@ -1,0 +1,59 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    wordpress.yaml                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/02 15:25:03 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/09 14:25:11 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  serviceName: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress-image
+        imagePullPolicy: Never
+        args:
+          - /bin/ash
+          - /launch.sh
+        livenessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /
+            port: 5050
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        env:
+          - name: LB_IP
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: loadbalancer_ip
+          - name: MYSQL_WP_USERPASS
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: mysql_wordpress_user_pass
+          - name: WP_ADMINPASS
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: wordpress_admin_pass
+        ports:
+        - containerPort: 5050
+

@@ -1,0 +1,73 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ftps-svc.yaml                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/08 13:42:32 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/11 17:08:14 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftps-svc
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: shared
+
+spec:
+  selector:
+    app: ftps
+  type: LoadBalancer
+  ports:
+    - name: ftps
+      protocol: TCP
+      port: 21
+      targetPort: 21
+    - name: ftps-passive0
+      protocol: TCP
+      port: 60000
+      targetPort: 60000
+    - name: ftps-passive1
+      protocol: TCP
+      port: 60001
+      targetPort: 60001
+    - name: ftps-passive2
+      protocol: TCP
+      port: 60002
+      targetPort: 60002
+    - name: ftps-passive3
+      protocol: TCP
+      port: 60003
+      targetPort: 60003
+    - name: ftps-passive4
+      protocol: TCP
+      port: 60004
+      targetPort: 60004
+    - name: ftps-passive5
+      protocol: TCP
+      port: 60005
+      targetPort: 60005
+    - name: ftps-passive6
+      protocol: TCP
+      port: 60006
+      targetPort: 60006
+    - name: ftps-passive7
+      protocol: TCP
+      port: 60007
+      targetPort: 60007
+    - name: ftps-passive8
+      protocol: TCP
+      port: 60008
+      targetPort: 60008
+    - name: ftps-passive9
+      protocol: TCP
+      port: 60009
+      targetPort: 60009
+    - name: ftps-passive10
+      protocol: TCP
+      port: 60010
+      targetPort: 60010

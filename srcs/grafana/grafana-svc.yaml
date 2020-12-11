@@ -1,0 +1,28 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    grafana-svc.yaml                                   :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/08 13:43:02 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/11 15:25:41 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-svc
+  annotations:
+    metallb.universe.tf/address-pool: default
+#    metallb.universe.tf/allow-shared-ip: shared
+spec:
+  selector:
+    app: grafana
+  type: LoadBalancer
+  ports:
+    - name: grafana
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

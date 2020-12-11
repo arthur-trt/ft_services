@@ -1,0 +1,66 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    ftps.yaml                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/07 23:19:58 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/09 14:25:48 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ftps
+spec:
+  selector:
+    matchLabels:
+      app: ftps
+  serviceName: ftps
+  template:
+    metadata:
+      labels:
+        app: ftps
+    spec:
+      containers:
+      - name: ftps
+        image: ftps-image
+        imagePullPolicy: Never
+        volumeMounts:
+          - name: ftps-pv
+            mountPath: /home/user42
+        livenessProbe:
+          tcpSocket:
+            port: 21
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        env:
+          - name: FTPS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: ftps_pass
+          - name: LB_IP
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: loadbalancer_ip
+        ports:
+        - containerPort: 21
+        - containerPort: 60000
+        - containerPort: 60001
+        - containerPort: 60002
+        - containerPort: 60003
+        - containerPort: 60004
+        - containerPort: 60005
+        - containerPort: 60006
+        - containerPort: 60007
+        - containerPort: 60008
+        - containerPort: 60009
+        - containerPort: 60010
+      volumes:
+        - name: ftps-pv
+          persistentVolumeClaim:
+            claimName: ftps-pvc

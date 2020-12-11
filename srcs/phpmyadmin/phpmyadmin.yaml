@@ -1,0 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    phpmyadmin.yaml                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/03 22:42:06 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/09 14:25:17 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: phpmyadmin
+spec:
+  selector:
+    matchLabels:
+      app: phpmyadmin
+  serviceName: phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: phpmyadmin-image
+        imagePullPolicy: Never
+        livenessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        ports:
+        - containerPort: 5000

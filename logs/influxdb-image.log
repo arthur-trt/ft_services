@@ -1,0 +1,28 @@
+Sending build context to Docker daemon  12.29kB
+Step 1/5 : FROM alpine
+ ---> b14afc6dfb98
+Step 2/5 : ADD srcs/launch.sh .
+ ---> eba355bc71c9
+Step 3/5 : RUN apk add openrc influxdb
+ ---> Running in 347649e65a91
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/3) Installing influxdb (1.8.0-r1)
+Executing influxdb-1.8.0-r1.pre-install
+(2/3) Installing openrc (0.42.1-r11)
+Executing openrc-0.42.1-r11.post-install
+(3/3) Installing influxdb-openrc (1.8.0-r1)
+Executing busybox-1.31.1-r19.trigger
+OK: 271 MiB in 17 packages
+Removing intermediate container 347649e65a91
+ ---> 3c885a1554ed
+Step 4/5 : EXPOSE 8086 8083
+ ---> Running in 72acd9917fc9
+Removing intermediate container 72acd9917fc9
+ ---> 38a0f1ce732a
+Step 5/5 : CMD [ "/bin/ash", "launch.sh" ]
+ ---> Running in 90490bfc4851
+Removing intermediate container 90490bfc4851
+ ---> 1a04b4dbb882
+Successfully built 1a04b4dbb882
+Successfully tagged influxdb-image:latest

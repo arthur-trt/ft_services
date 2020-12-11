@@ -1,0 +1,28 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    wordpress-svc.yaml                                 :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/08 13:46:13 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/11 17:08:31 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: wordpress-svc
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: shared
+spec:
+  selector:
+    app: wordpress
+  type: LoadBalancer
+  ports:
+    - name: https
+      protocol: TCP
+      port: 5050
+      targetPort: 5050

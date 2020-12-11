@@ -1,0 +1,54 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    telegraf.yaml                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/04 14:15:01 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/09 14:26:10 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: telegraf
+spec:
+  selector:
+    matchLabels:
+      app: telegraf
+  serviceName: telegraf
+  template:
+    metadata:
+      labels:
+        app: telegraf
+    spec:
+      serviceAccount: telegraf
+      serviceAccountName: telegraf
+      containers:
+      - name: telegraf
+        image: telegraf-image
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8125
+        - containerPort: 8080
+        volumeMounts:
+        - name: telegraf
+          mountPath: "/var/run/docker.sock"
+        env:
+          - name: IDB_TELEGRAF_PASS
+            valueFrom:
+              secretKeyRef:
+                name: pass-secret
+                key: influxdb_telegraf_user_pass
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 30
+      volumes:
+      - name: telegraf
+        hostPath:
+          path: /var/run/docker.sock

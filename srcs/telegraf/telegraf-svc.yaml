@@ -1,0 +1,30 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    telegraf-svc.yaml                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/08 13:45:38 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/08 13:45:40 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-telegraf
+  annotations:
+    metallb.universe.tf/address-pool: default
+    metallb.universe.tf/allow-shared-ip: shared
+spec:
+  selector:
+    app: telegraf
+  type: ClusterIP
+  ports:
+  - name: telegraf
+    port: 8125
+    targetPort: 8125
+  - name: health
+    port: 8080
+    targetPort: 8080

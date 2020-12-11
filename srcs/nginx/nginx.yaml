@@ -1,0 +1,40 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    nginx.yaml                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/12/01 17:07:02 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/09 14:25:37 by atrouill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx-image
+        imagePullPolicy: Never
+        livenessProbe:
+          httpGet:
+            scheme: HTTPS
+            path: /
+            port: 443
+          initialDelaySeconds: 30
+          periodSeconds: 30
+        ports:
+        - containerPort: 80
+        - containerPort: 443
