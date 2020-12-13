@@ -6,7 +6,7 @@
 #    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/08 13:43:02 by atrouill          #+#    #+#              #
-#    Updated: 2020/12/11 15:25:41 by atrouill         ###   ########.fr        #
+#    Updated: 2020/12/12 21:16:55 by atrouill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ kind: Service
 metadata:
   name: grafana-svc
   annotations:
-    metallb.universe.tf/address-pool: default
-#    metallb.universe.tf/allow-shared-ip: shared
+    metallb.universe.tf/address-pool: ip-pool
+    metallb.universe.tf/allow-shared-ip: shared
 spec:
   selector:
     app: grafana

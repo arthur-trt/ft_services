@@ -2,7 +2,7 @@ Sending build context to Docker daemon  11.78kB
 Step 1/8 : FROM	alpine
  ---> b14afc6dfb98
 Step 2/8 : RUN 	apk add nginx openrc openssl
- ---> Running in e0736e9c933b
+ ---> Running in 7c1f728a2e5e
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
 (1/4) Installing pcre (8.44-r0)
@@ -10,33 +10,33 @@ fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.g
 Executing nginx-1.18.0-r1.pre-install
 (3/4) Installing openrc (0.42.1-r11)
 Executing openrc-0.42.1-r11.post-install
-(4/4) Installing openssl (1.1.1g-r0)
+(4/4) Installing openssl (1.1.1i-r0)
 Executing busybox-1.31.1-r19.trigger
 OK: 10 MiB in 18 packages
-Removing intermediate container e0736e9c933b
- ---> 844dd2c8cb40
+Removing intermediate container 7c1f728a2e5e
+ ---> 16aa7c783b92
 Step 3/8 : RUN		mkdir /run/nginx /www && 		chown -R nginx:nginx /www && 	 	openssl req -x509 -nodes -subj '/CN=localhost' -days 365 -newkey rsa:4096 		 -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt
- ---> Running in 24e144ea5fb2
+ ---> Running in 1a95f1d97bbd
 [91mGenerating a RSA private key
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91mwriting new private key to '/etc/ssl/private/server.key'
-[0m[91m-----
-[0mRemoving intermediate container 24e144ea5fb2
- ---> 8a5570ac3d4b
+.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.................................................[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m....................................................++++
+.....................++++
+writing new private key to '/etc/ssl/private/server.key'
+-----
+[0mRemoving intermediate container 1a95f1d97bbd
+ ---> 7df05932d167
 Step 4/8 : ADD		srcs/nginx.conf /etc/nginx/
- ---> 7a0a0d698eec
+ ---> 705fe52f004c
 Step 5/8 : ADD		srcs/index.html	/www/
- ---> 5834b57a715a
+ ---> 27a9daa9d153
 Step 6/8 : ADD		srcs/launch.sh .
- ---> 93bda3ca46b4
+ ---> 8baea56fe7b3
 Step 7/8 : EXPOSE	80 443
- ---> Running in 29abf8aa2018
-Removing intermediate container 29abf8aa2018
- ---> ab6e7d69e59d
+ ---> Running in 3b44a34fa79b
+Removing intermediate container 3b44a34fa79b
+ ---> 18a01929d1d9
 Step 8/8 : CMD		[ "/bin/ash", "launch.sh" ]
- ---> Running in 70a2cda1d1aa
-Removing intermediate container 70a2cda1d1aa
- ---> 8efd7490b4db
-Successfully built 8efd7490b4db
+ ---> Running in 7d38f16eb94a
+Removing intermediate container 7d38f16eb94a
+ ---> 7ba9ecb7ad6a
+Successfully built 7ba9ecb7ad6a
 Successfully tagged nginx-image:latest

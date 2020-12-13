@@ -2,27 +2,9 @@ Sending build context to Docker daemon  25.09kB
 Step 1/6 : FROM alpine
  ---> b14afc6dfb98
 Step 2/6 : RUN	apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community telegraf
- ---> Running in 8735972374e7
+ ---> Running in f428cac36e9f
 fetch http://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
 (1/1) Installing telegraf (1.16.3-r1)
 Executing telegraf-1.16.3-r1.pre-install
-Executing busybox-1.31.1-r19.trigger
-OK: 94 MiB in 15 packages
-Removing intermediate container 8735972374e7
- ---> 18ea3e971c15
-Step 3/6 : ADD srcs/launch.sh .
- ---> cce754fd6b70
-Step 4/6 : ADD srcs/telegraf.conf /etc/telegraf.conf
- ---> f1b93a2b1322
-Step 5/6 : EXPOSE 8125 8080
- ---> Running in 483ef706ce99
-Removing intermediate container 483ef706ce99
- ---> ae9329052bbd
-Step 6/6 : CMD [ "/bin/ash", "launch.sh" ]
- ---> Running in 8d00d918d0f8
-Removing intermediate container 8d00d918d0f8
- ---> ae0b03110930
-Successfully built ae0b03110930
-Successfully tagged telegraf-image:latest

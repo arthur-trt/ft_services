@@ -15,9 +15,9 @@ function start_minikube()
 {
 	echo -e "${C_CYAN}Configuring Minikube${C_RESET}"
 	echo "⌛ Staring Minikube"
-#	minikube start --vm-driver=docker		> logs/minikube.log
+	minikube start --vm-driver=virtualbox		> logs/minikube.log
 	eval $(minikube docker-env)				>> logs/minikube.log
-#	echo -e "${EREASE}✅ Minikube started !"
+	echo -e "${EREASE}✅ Minikube started !"
 	echo "⌛ Enable metrics-server"
 	minikube addons enable metrics-server	>> logs/minikube.log
 	echo -e "${EREASE}✅ Metrics-server configured !"

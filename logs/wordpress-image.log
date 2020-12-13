@@ -1,8 +1,15 @@
 Sending build context to Docker daemon  646.1kB
 Step 1/10 : FROM 	alpine
+latest: Pulling from library/alpine
+05e7bc50f07f: Pulling fs layer
+05e7bc50f07f: Verifying Checksum
+05e7bc50f07f: Download complete
+05e7bc50f07f: Pull complete
+Digest: sha256:a126728cb7db157f0deb377bcba3c5e473e612d7bafc27f6bb4e5e083f9f08c2
+Status: Downloaded newer image for alpine:latest
  ---> b14afc6dfb98
 Step 2/10 : RUN 	apk add wget nginx openssl openrc php7-common php7-iconv php7-json php7-gd php7-curl php7-xml php7-mysqli php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap php7-xmlrpc php7-posix php7-mcrypt php7-gettext php7-ldap php7-ctype php7-dom php7-fpm mysql-client
- ---> Running in 6f3a4d1a6efa
+ ---> Running in c005b56ae399
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
 fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
 (1/68) Installing fcgi (2.4.2-r0)
@@ -18,7 +25,7 @@ fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.g
 Executing nginx-1.18.0-r1.pre-install
 (11/68) Installing openrc (0.42.1-r11)
 Executing openrc-0.42.1-r11.post-install
-(12/68) Installing openssl (1.1.1g-r0)
+(12/68) Installing openssl (1.1.1i-r0)
 (13/68) Installing php7-common (7.3.25-r0)
 (14/68) Installing argon2-libs (20190702-r1)
 (15/68) Installing libedit (20191231.3.1-r0)
@@ -78,36 +85,36 @@ Executing openrc-0.42.1-r11.post-install
 Executing busybox-1.31.1-r19.trigger
 Executing ca-certificates-20191127-r4.trigger
 OK: 72 MiB in 82 packages
-Removing intermediate container 6f3a4d1a6efa
- ---> 3d329f88bf47
+Removing intermediate container c005b56ae399
+ ---> 62620ed11a1a
 Step 3/10 : ADD		srcs/nginx.conf	/etc/nginx/
- ---> 4fa53e2bb9e7
+ ---> 9629d8c89d11
 Step 4/10 : ADD		srcs/launch.sh .
- ---> 966930e3e5df
+ ---> 875a0f1ab64e
 Step 5/10 : ADD		srcs/db_wordpress.sql .
- ---> 524c7b551a9f
+ ---> fb3062802bbf
 Step 6/10 : RUN		mkdir /run/nginx /www && 		chown -R nginx:nginx /www && 	 	openssl req -x509 -nodes -subj '/CN=localhost' -days 365 -newkey rsa:4096 		 -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt
- ---> Running in 339c64a5e525
+ ---> Running in df16544a5607
 [91mGenerating a RSA private key
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+
-[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+
+[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.........................[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+
+[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m.[0m[91m+[0m[91m+[0m[91m+[0m[91m+
 [0m[91mwriting new private key to '/etc/ssl/private/server.key'
 [0m[91m-----
-[0mRemoving intermediate container 339c64a5e525
- ---> 6efdc7071ff5
+[0mRemoving intermediate container df16544a5607
+ ---> 551e391d3fed
 Step 7/10 : RUN 	wget -q https://wordpress.org/latest.tar.gz && 		tar xzf latest.tar.gz -C /www/
- ---> Running in ba63c7681ff1
-Removing intermediate container ba63c7681ff1
- ---> 27f2c01903f1
+ ---> Running in 7226c740731e
+Removing intermediate container 7226c740731e
+ ---> d34325f35db7
 Step 8/10 : ADD		srcs/wp-config.php /www/wordpress/.
- ---> c4b38e225d50
+ ---> 19ec1446e06e
 Step 9/10 : EXPOSE	5050
- ---> Running in 732efcef5bff
-Removing intermediate container 732efcef5bff
- ---> 070967e48872
+ ---> Running in 40333d4b3e4f
+Removing intermediate container 40333d4b3e4f
+ ---> 2f322f06696e
 Step 10/10 : CMD		[ "/bin/ash", "/launch.sh" ]
- ---> Running in 5e49a657cabb
-Removing intermediate container 5e49a657cabb
- ---> 8fa7d32adc97
-Successfully built 8fa7d32adc97
+ ---> Running in 8f2f2394a113
+Removing intermediate container 8f2f2394a113
+ ---> 4c03762144bb
+Successfully built 4c03762144bb
 Successfully tagged wordpress-image:latest

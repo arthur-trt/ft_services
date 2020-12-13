@@ -22,8 +22,6 @@ source srcs/setup/show_infos.sh
 mkdir -p logs/
 rm -rf logs/*
 
-minikube start --vm-driver=docker		> logs/minikube.log
-eval $(minikube docker-env)
 start_minikube
 configure_metalLB
 apply_pvc

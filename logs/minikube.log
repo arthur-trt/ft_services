@@ -1,11 +1,11 @@
-😄  minikube v1.15.1 on Ubuntu 20.10
-✨  Using the docker driver based on user configuration
-👍  Starting control plane node minikube in cluster minikube
-🔥  Creating docker container (CPUs=2, Memory=7900MB) ...
-🐳  Preparing Kubernetes v1.19.4 on Docker 19.03.13 ...
-🔎  Verifying Kubernetes components...
-🌟  Enabled addons: storage-provisioner, default-storageclass
-🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+😄  minikube v1.15.1 sur Ubuntu 18.04
+✨  Utilisation du pilote virtualbox basé sur la configuration de l'utilisateur
+💿  Downloading VM boot image ...
+👍  Démarrage du noeud de plan de contrôle minikube dans le cluster minikube
+🔥  Création de VM virtualbox (CPUs=2, Mémoire=4000MB, Disque=20000MB)...
+🔥  Création de VM virtualbox (CPUs=2, Mémoire=4000MB, Disque=20000MB)...
+
+
 🌟  The 'metrics-server' addon is enabled
 💡  Some dashboard features require the metrics-server addon. To enable all features please run:
 
@@ -13,45 +13,3 @@
 
 
 🌟  The 'dashboard' addon is enabled
-namespace/metallb-system created
-podsecuritypolicy.policy/controller created
-podsecuritypolicy.policy/speaker created
-serviceaccount/controller created
-serviceaccount/speaker created
-clusterrole.rbac.authorization.k8s.io/metallb-system:controller created
-clusterrole.rbac.authorization.k8s.io/metallb-system:speaker created
-role.rbac.authorization.k8s.io/config-watcher created
-role.rbac.authorization.k8s.io/pod-lister created
-clusterrolebinding.rbac.authorization.k8s.io/metallb-system:controller created
-clusterrolebinding.rbac.authorization.k8s.io/metallb-system:speaker created
-rolebinding.rbac.authorization.k8s.io/config-watcher created
-rolebinding.rbac.authorization.k8s.io/pod-lister created
-daemonset.apps/speaker created
-deployment.apps/controller created
-secret/memberlist created
-configmap/config created
-persistentvolumeclaim/mysql-pvc created
-persistentvolumeclaim/ftps-pvc created
-persistentvolumeclaim/influxdb-pvc created
-persistentvolumeclaim/grafana-pvc created
-serviceaccount/telegraf created
-clusterrole.rbac.authorization.k8s.io/influx:cluster:viewer created
-clusterrole.rbac.authorization.k8s.io/influx:telegraf created
-clusterrolebinding.rbac.authorization.k8s.io/influx:telegraf:viewer created
-service/mysql-svc created
-service/wordpress-svc created
-service/svc-telegraf created
-service/nginx-svc created
-service/ftps-svc created
-service/influxdb-svc created
-service/phpmyadmin-svc created
-service/grafana-svc created
-secret/pass-secret created
-statefulset.apps/mysql created
-statefulset.apps/wordpress created
-statefulset.apps/telegraf created
-statefulset.apps/nginx created
-statefulset.apps/ftps created
-statefulset.apps/influxdb created
-statefulset.apps/phpmyadmin created
-statefulset.apps/grafana created
