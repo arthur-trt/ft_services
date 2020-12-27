@@ -6,7 +6,7 @@
 #    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/02 15:25:03 by atrouill          #+#    #+#              #
-#    Updated: 2020/12/09 14:25:11 by atrouill         ###   ########.fr        #
+#    Updated: 2020/12/14 15:41:28 by atrouill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,12 @@ spec:
           - /bin/ash
           - /launch.sh
         livenessProbe:
-          httpGet:
-            scheme: HTTPS
-            path: /
-            port: 5050
+          exec:
+            command:
+              - /bin/ash
+              - livenessprobe.sh
           initialDelaySeconds: 30
-          periodSeconds: 30
+          periodSeconds: 10
         env:
           - name: LB_IP
             valueFrom:

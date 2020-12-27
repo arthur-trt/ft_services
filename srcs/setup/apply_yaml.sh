@@ -18,7 +18,7 @@ function apply_secret()
 	find -type f -name "*secret*.yaml" -print0 |
 	while IFS= read -r -d '' file; do
 		echo "⌛ Applying ${file}"
-		if ! (kubectl apply -f "${file}"	>> logs/minikube.log); then
+		if ! (kubectl apply -f "${file}"	&>> logs/minikube.log); then
 			echo "❌ Problem when applying ${file}"
 			exit 1
 		fi
@@ -33,7 +33,7 @@ function apply_rbac()
 	find -type f -name "*-rbac.yaml" -print0 |
 	while IFS= read -r -d '' file; do
 		echo "⌛ Applying ${file}"
-		if ! (kubectl apply -f "${file}"	>> logs/minikube.log); then
+		if ! (kubectl apply -f "${file}"	&>> logs/minikube.log); then
 			echo "❌ Problem when applying ${file}"
 			exit 1
 		fi
@@ -47,7 +47,7 @@ function apply_pvc()
 	find -type f -name "*-pvc.yaml" -print0 |
 	while IFS= read -r -d '' file; do
 		echo "⌛ Applying ${file}"
-		if ! (kubectl apply -f "${file}"	>> logs/minikube.log); then
+		if ! (kubectl apply -f "${file}"	&>> logs/minikube.log); then
 			echo "❌ Problem when applying ${file}"
 			exit 1
 		fi
@@ -62,7 +62,7 @@ function apply_svc()
 	find -type f -name "*-svc.yaml" -print0 |
 	while IFS= read -r -d '' file; do
 		echo "⌛ Applying ${file}"
-		if ! (kubectl apply -f "${file}"	>> logs/minikube.log); then
+		if ! (kubectl apply -f "${file}"	&>> logs/minikube.log); then
 			echo "❌ Problem when applying ${file}"
 			exit 1
 		fi
@@ -76,7 +76,7 @@ function apply_app()
 	find -mindepth 3 -maxdepth 3 -type f -name "*.yaml" ! -name "*-*" -print0 |
 	while IFS= read -r -d '' file; do
 		echo "⌛ Applying ${file}"
-		if ! (kubectl apply -f "${file}"	>> logs/minikube.log); then
+		if ! (kubectl apply -f "${file}"	&>> logs/minikube.log); then
 			echo "❌ Problem when applying ${file}"
 			exit 1
 		fi

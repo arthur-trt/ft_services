@@ -13,8 +13,12 @@
 
 function	nginx_infos()
 {
+	ssh_pass=$(kubectl get secret pass-secret -o jsonpath="{.data.ssh_pass}" | base64 --decode)
 	echo -e "Adress HTTP :\thttp://${lb_ip}/"
 	echo -e "Adress HTTPS :\thttps://${lb_ip}/"
+	echo -e "Username :\tuser42"
+	echo -e "Password :\t${ssh_pass}"
+
 }
 
 function	wordpress_infos()
@@ -30,7 +34,7 @@ function	phpmyadmin_infos()
 {
 	mysql_pass=$(kubectl get secret pass-secret -o jsonpath="{.data.mysql_admin_pass}" | base64 --decode)
 	echo -e "Address HTTPS :\thttps://${lb_ip}/phpmyadmin"
-	echo -e "Address IP :\thttps://${lb_ip}:5000"
+	echo -e "Address IP :\thttp://${lb_ip}:5000"
 	echo -e "Username :\tadmin"
 	echo -e "Password :\t${mysql_pass}"
 }

@@ -1,5 +1,11 @@
-api_ip=$(kubectl config view -o jsonpath='{"Cluster name\tServer\n"}{range .clusters[*]}{.name}{"\t"}{.cluster.server}{"\n"}{end}' | awk '/https/ {print $2}')
+#!/bin/bash
+baseip=192.168.49.
 
-echo ${api_ip}
+ips=""
 
-sed -i "s|url =.*|url = \"${api_ip}\"|" srcs/telegraf/srcs/telegraf.conf
+for i in {150..160}
+do
+	ips="${ips} ${baseip}${i} "
+done
+
+echo ${ips}

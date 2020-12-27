@@ -43,6 +43,7 @@ function build_secret() {
 	obtain_loadbalancer_ip
 	sed -i "s|loadbalancer_ip:.*|loadbalancer_ip: \"$(echo ${lb_ip} | base64)\"|" srcs/secret.yaml
 	sed -i "s|ftps_pass:.*|ftps_pass: \"$(openssl rand -base64 32 | tr -dc _A-Z-a-z-0-9 | base64 )\"|" srcs/secret.yaml
+	sed -i "s|ssh_pass:.*|ssh_pass: \"$(openssl rand -base64 32 | tr -dc _A-Z-a-z-0-9 | base64 )\"|" srcs/secret.yaml
 	sed -i "s|influxdb_admin_pass:.*|influxdb_admin_pass: \"$(openssl rand -base64 32 | tr -dc _A-Z-a-z-0-9 | base64 )\"|" srcs/secret.yaml
 	sed -i "s|influxdb_telegraf_user_pass:.*|influxdb_telegraf_user_pass: \"$(openssl rand -base64 32 | tr -dc _A-Z-a-z-0-9 | base64 )\"|" srcs/secret.yaml
 	sed -i "s|influxdb_grafana_user_pass:.*|influxdb_grafana_user_pass: \"$(openssl rand -base64 32 | tr -dc _A-Z-a-z-0-9 | base64 )\"|" srcs/secret.yaml

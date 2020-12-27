@@ -6,7 +6,7 @@
 #    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/03 22:42:06 by atrouill          #+#    #+#              #
-#    Updated: 2020/12/09 14:25:17 by atrouill         ###   ########.fr        #
+#    Updated: 2020/12/14 11:00:54 by atrouill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ spec:
         imagePullPolicy: Never
         livenessProbe:
           httpGet:
-            scheme: HTTPS
-            path: /
+            scheme: HTTP
+            path: /phpmyadmin
             port: 5000
           initialDelaySeconds: 30
           periodSeconds: 30

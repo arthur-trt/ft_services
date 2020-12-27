@@ -1,28 +1,21 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    phpmyadmin-svc.yaml                                :+:      :+:    :+:    #
+#    livenessprobe.sh                                   :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: atrouill <atrouill@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/12/08 13:44:51 by atrouill          #+#    #+#              #
-#    Updated: 2020/12/14 11:00:46 by atrouill         ###   ########.fr        #
+#    Created: 2020/12/26 18:04:11 by atrouill          #+#    #+#              #
+#    Updated: 2020/12/26 18:05:46 by atrouill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-apiVersion: v1
-kind: Service
-metadata:
-  name: phpmyadmin-svc
-  annotations:
-    metallb.universe.tf/address-pool: default
-    metallb.universe.tf/allow-shared-ip: shared
-spec:
-  selector:
-    app: phpmyadmin
-  type: LoadBalancer
-  ports:
-    - name: http
-      protocol: TCP
-      port: 5000
-      targetPort: 5000
+if ! nc -z 127.0.0.1 22 &> /dev/null; then
+	echo "Can't bind ssh server"
+	exit 1
+fi
+
+if ! wget --no-check-certificate -t 1 --timeout=2 -qO- https://localhost/ &> /dev/null; then
+	echo "Can't connect to nginx"
+	exit 1
+fi

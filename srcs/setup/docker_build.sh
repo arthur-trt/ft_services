@@ -21,7 +21,11 @@ function build_image()
 		dir=$(dirname ${file})
 		touch logs/${image}.log
 		echo "⌛ Building ${image}"
-		docker build -t ${image} ${dir} > logs/${image}.log
-		echo -e "${EREASE}✅ Build ${image} done !"
+		if docker build -t ${image} ${dir} > logs/${image}.log; then
+			echo -e "${EREASE}✅ Build ${image} done !"
+		else
+			echo -e "${EREASE}${EREASE}${C_RED}❌ Build ${image} failed. Log saved.${C_RESET}"
+			exit 1
+		fi
 	done
 }
