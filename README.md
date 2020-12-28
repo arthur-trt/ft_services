@@ -64,3 +64,7 @@ This project uses MetalLB as LoadBalancer in Layer 2 mode.
 8. telegraf
 	- Used to monitor all containers
 	- Mounts the docker socket in the telegraf container for information access
+
+##### Schematic diagram
+
+![ft_services](https://user-images.githubusercontent.com/4441676/103203571-7f02a800-48f5-11eb-9e5c-17b183ac16b7.png)
