@@ -14,8 +14,11 @@
 function start_minikube()
 {
 	echo -e "${C_CYAN}Configuring Minikube${C_RESET}"
+	echo "⌛ Delete old Minikube if any"
+	minikube delete &> logs/minikube
+	echo -e "${EREASE}✅ Old configuration deleted !"
 	echo "⌛ Staring Minikube"
-	if minikube start --vm-driver=docker > logs/minikube.log; then
+	if minikube start --vm-driver=docker &>> logs/minikube.log; then
 		eval $(minikube docker-env)				&>> logs/minikube.log
 		echo -e "${EREASE}✅ Minikube started !"
 	else

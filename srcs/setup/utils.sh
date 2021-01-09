@@ -50,4 +50,3 @@ function	clean()
 	rm -f srcs/nginx/srcs/server.*
 	rm -f srcs/wordpress/srcs/server.*
 }
-
