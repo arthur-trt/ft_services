@@ -51,7 +51,8 @@ function configure_metalLB()
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"	&>> logs/minikube.log
 	echo -e "${EREASE}✅ Setup secret done !"
 	echo "⌛ Configure IPs for MetalLB"
-	baseip=`echo $(minikube ip) | cut -d"." -f1-3`
+#	baseip=`echo $(minikube ip) | cut -d"." -f1-3`
+	baseip="172.17.0"
 	sed -e "s|IP1|${baseip}.150|" srcs/metalLB-template.yaml > srcs/metalLB.yaml
 	sed -i "s|IP2|${baseip}.160|" srcs/metalLB.yaml
 	echo -e "${EREASE}✅ Setup IPs done !"
